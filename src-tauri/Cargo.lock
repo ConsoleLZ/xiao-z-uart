@@ -5706,7 +5706,7 @@ dependencies = [
 
 [[package]]
 name = "小z串口"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = [
  "rfd",
  "rust_xlsxwriter",

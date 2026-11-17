@@ -1,6 +1,6 @@
 [package]
 name = "小z串口"
-version = "0.0.2"
+version = "0.0.3"
 description = "一个串口调试助手"
 authors = ["xiaozhe"]
 edition = "2021"
