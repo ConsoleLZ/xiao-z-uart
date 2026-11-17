@@ -1,0 +1,163 @@
+/* Hallmark · macrostructure: Workbench · tone: technical/austere
+ * theme: custom (oscilloscope phosphor · paper oklch(14% 0.008 240) · accent oklch(72% 0.19 150) phosphor-green)
+ * display + body: JetBrains Mono (terminal-aesthetic — single-font IS the design)
+ * axes: dark paper / mono display / cool-phosphor accent
+ * audience: embedded/hardware engineers · use: serial monitoring · inferred (user delegated)
+ */
+
+/* ========== 设计令牌：示波器磷光主题 ========== */
+:root {
+	/* —— 色彩：纸张（背景）层 —— */
+	/* 最底层背景：近黑，微蓝调，模拟 CRT 屏幕 */
+	--color-paper: oklch(14% 0.008 240);
+	/* 面板/卡片背景，略亮 */
+	--color-paper-2: oklch(18% 0.012 240);
+	/* 凹陷区域：输入框/文本域槽底 */
+	--color-paper-3: oklch(11% 0.01 240);
+	/* 悬停高亮背景 */
+	--color-paper-hover: oklch(24% 0.014 240);
+	/* 选中态背景 */
+	--color-paper-active: oklch(28% 0.016 240);
+
+	/* —— 色彩：墨水（文字）层 —— */
+	/* 主文字：接近白 */
+	--color-ink: oklch(93% 0.005 240);
+	/* 次要文字：标签/说明 */
+	--color-ink-muted: oklch(68% 0.012 240);
+	/* 占位符/禁用文字 */
+	--color-ink-faint: oklch(48% 0.01 240);
+
+	/* —— 色彩：强调色（磷光绿，示波器经典色） —— */
+	--color-accent: oklch(72% 0.19 150);
+	/* 强调色按下/暗态 */
+	--color-accent-deep: oklch(58% 0.16 150);
+	/* 强调色文字（深底上的亮绿字） */
+	--color-accent-ink: oklch(82% 0.2 150);
+
+	/* —— 功能色 —— */
+	/* 危险红 */
+	--color-danger: oklch(62% 0.2 25);
+	--color-danger-ink: oklch(72% 0.2 25);
+	/* 成功绿（与强调色区分：偏黄绿） */
+	--color-success: oklch(68% 0.16 135);
+	/* 警告琥珀 */
+	--color-warn: oklch(78% 0.15 65);
+
+	/* —— 边框 —— */
+	/* 普通边框：暗灰 */
+	--color-border: oklch(30% 0.015 240);
+	/* 亮边框：上/左高光 */
+	--color-border-light: oklch(40% 0.015 240);
+	/* 暗边框：下/右阴影 */
+	--color-border-dark: oklch(20% 0.01 240);
+	/* 聚焦边框：磷光绿 */
+	--color-focus: oklch(72% 0.19 150);
+
+	/* —— 字体 —— */
+	/* 单一字体：终端/仪表气质，单字体即设计意图 */
+	--font-display: 'JetBrains Mono', 'Cascadia Code', 'SF Mono', 'Consolas', 'Courier New', monospace;
+	--font-body: 'JetBrains Mono', 'Cascadia Code', 'SF Mono', 'Consolas', 'Courier New', monospace;
+
+	/* —— 字号阶梯（4px 基准） —— */
+	--text-xs: 11px;   /* 辅助文字/标签 */
+	--text-sm: 12px;   /* 按钮/菜单 */
+	--text-base: 13px; /* 正文/输入 */
+	--text-md: 14px;   /* 接收区数据 */
+	--text-lg: 16px;   /* 小标题 */
+	--text-xl: 20px;   /* 标题 */
+	--text-2xl: 24px;  /* 弹窗标题 */
+
+	/* —— 间距（4pt 基准） —— */
+	--space-3xs: 2px;
+	--space-2xs: 4px;
+	--space-xs: 6px;
+	--space-sm: 8px;
+	--space-md: 12px;
+	--space-lg: 16px;
+	--space-xl: 20px;
+	--space-2xl: 24px;
+	--space-3xl: 32px;
+
+	/* —— 圆角：精密仪器偏直角，仅极小圆角 —— */
+	--radius-none: 0;
+	--radius-sm: 2px;
+	--radius-md: 3px;
+
+	/* —— 动效（极简，仅 transform/opacity） —— */
+	--dur-fast: 90ms;
+	--dur-base: 140ms;
+	--dur-slow: 220ms;
+	--ease-out: cubic-bezier(0.2, 0.6, 0.2, 1);
+	--ease-in: cubic-bezier(0.4, 0, 0.8, 0.4);
+	--ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+	/* —— 分隔线 —— */
+	--rule-hair: 1px solid var(--color-border);
+	--rule-glow: 1px solid var(--color-accent-deep);
+}
+
+/* ========== 基础重置 ========== */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	overflow: hidden;
+	background: var(--color-paper);
+	color: var(--color-ink);
+	font-family: var(--font-body);
+	font-size: var(--text-base);
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 选中文本：磷光绿底深色字 */
+::selection {
+	background: var(--color-accent);
+	color: var(--color-paper);
+}
+
+/* —— 滚动条：复古精密仪器风，磷光绿滑块 —— */
+*::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+*::-webkit-scrollbar-track {
+	background: var(--color-paper-3);
+}
+*::-webkit-scrollbar-thumb {
+	background: var(--color-border);
+	border: 2px solid var(--color-paper-3);
+}
+*::-webkit-scrollbar-thumb:hover {
+	background: var(--color-border-light);
+}
+*::-webkit-scrollbar-thumb:active {
+	background: var(--color-accent-deep);
+}
+*::-webkit-scrollbar-corner {
+	background: var(--color-paper-3);
+}
+
+/* —— 全局焦点环：磷光绿，即时出现不动画 —— */
+:focus-visible {
+	outline: 2px solid var(--color-focus);
+	outline-offset: 1px;
+}
+
+/* —— smoothie 图表 tooltip 复用主题 —— */
+div.smoothie-chart-tooltip {
+	background: var(--color-paper-2);
+	border: 1px solid var(--color-accent-deep);
+	padding: var(--space-xs) var(--space-sm);
+	margin-top: 20px;
+	font-family: var(--font-body);
+	color: var(--color-ink);
+	font-size: var(--text-xs);
+	pointer-events: none;
+	z-index: 2147483647;
+	border-radius: var(--radius-sm);
+}

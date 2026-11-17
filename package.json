@@ -1,0 +1,34 @@
+{
+	"name": "小z串口",
+	"private": true,
+	"version": "0.0.2",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vue-tsc --noEmit && vite build",
+		"preview": "vite preview",
+		"tauri": "tauri",
+		"tauri:dev": "tauri dev",
+		"tauri:build": "tauri build",
+		"tauri:build:debug": "tauri build --debug",
+		"tauri:build:beta": "tauri build --features beta",
+		"format": "prettier --write \"src/**/*.ts\" \"src/**/*.vue\" \"src/**/*.css\" \"src/**/*.json\"",
+		"electron:generate-icons": "electron-icon-builder --input=./logo.png --output=icon --flatten"
+	},
+	"dependencies": {
+		"@tauri-apps/api": "^2",
+		"@tauri-apps/plugin-opener": "^2",
+		"vue": "^3.5.13"
+	},
+	"devDependencies": {
+		"@tauri-apps/cli": "^2",
+		"@types/node": "^24.10.1",
+		"@vitejs/plugin-vue": "^5.2.1",
+		"cross-env": "^10.1.0",
+		"electron-icon-builder": "^2.0.1",
+		"prettier": "^3.8.1",
+		"typescript": "~5.6.2",
+		"vite": "^6.0.3",
+		"vue-tsc": "^2.1.10"
+	}
+}
